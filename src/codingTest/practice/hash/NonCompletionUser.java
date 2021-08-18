@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-//완주하지 못한 선수2
+//완주하지 못한 선수2(완료)
 //https://programmers.co.kr/learn/courses/30/lessons/42576
 //what is getOrDefault?
 public class NonCompletionUser {

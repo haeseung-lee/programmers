@@ -2,7 +2,7 @@ package codingTest.practice.sort;
 
 import java.util.Arrays;
 
-//k번째 숫자 구하기
+//k번째 숫자 구하기(완료)
 public class KthNumber {
 
 	public static void main(String[] args) {
@@ -20,6 +20,7 @@ public class KthNumber {
 		
 	}
 	
+	//내 풀이
 	public int[] solution(int[] array, int[][] commands) {
 		
 		
@@ -27,6 +28,7 @@ public class KthNumber {
 		
 		for(int i = 0; i < commands.length; i++) {
 			
+			//1. commands 의 i번째 배열의 인덱서[0]~인덱스[1]번째 길이만큼의 배열 만들기 
 			int[] arrays = new int[commands[i][1] - commands[i][0] + 1];
 			int index = 0;
 			//배열복사를 생각하자!
@@ -36,7 +38,9 @@ public class KthNumber {
 				index++;
 			}
 			
+			//2. 오름차순정렬
 			Arrays.sort(arrays);
+			//3. commands 의 i번째 배열의 [2]번째 인덱스에서 제시하는 번째의 숫자 가져오기
 			answer[i] = arrays[commands[i][2]-1];
 		}
 		

@@ -1,11 +1,8 @@
 package codingTest.practice.hash;
 
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.TreeSet;
 
-//접두사가 있으면 false, 없으면 true를 반환
+//접두사가 있으면 false, 없으면 true를 반환(완료)
 
 public class PhoneNumberList {
 
@@ -18,14 +15,16 @@ public class PhoneNumberList {
 		System.out.println(test.solution(numberList));
 	}
 	
-	//내풀이.. hash를 쓰는 방법..?
+	//내풀이
     public boolean solution(String[] phone_book) {
         boolean answer = true;
         
+        //1. 순서대로 정렬
         Arrays.sort(phone_book);
         
+        
         for(int i = 1; i < phone_book.length; i++) {
-        	
+        //2. 앞 뒤 한번씩비교	
         	if(phone_book[i].startsWith(phone_book[i-1])) {
         		answer = false;
         		break;
