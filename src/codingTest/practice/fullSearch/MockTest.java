@@ -2,9 +2,8 @@ package codingTest.practice.fullSearch;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Iterator;
 
+//풀이완료
 public class MockTest {
 	
 	//3명이 있다.
@@ -16,7 +15,7 @@ public class MockTest {
 	
 		MockTest test = new MockTest();
 		
-		int[] answers = {1,1,1,1,1,1,2,4};
+		int[] answers = {1,2,3,4,5};
 		
 		
 		
@@ -54,48 +53,46 @@ public class MockTest {
         count.add(student3AnswerCount);
         
         Collections.sort(count);
-        
+
         if(count.get(2) > count.get(1)) {
         	count.remove(0);
-        	count.remove(1);
+        	count.remove(0);
         } else {
         	if(count.get(1) > count.get(0)) {
         		count.remove(0);
         	}
-        }
-        
-        
+        }    
         
         int[] answer = new int[count.size()];
         
-        if(answer.length == 3) {
+        if(count.size() == 3) {
         	answer[0] = 1;
         	answer[1] = 2;
         	answer[2] = 3;
+        } else if(count.size() == 1) {
+        	
+        	if(count.contains(student1AnswerCount)) {
+        		answer[0] = 1;
+        	} else if(count.contains(student2AnswerCount)) {
+        		answer[0] = 2;
+        	} else {
+        		answer[0] = 3;
+        	}
         } else {
         	
-        	HashSet<Integer> list = new HashSet<>();
-        	for(int i = answer.length -1; i >= 0; i--) {
-        		
-        		if(count.contains(student1AnswerCount)) {
-        			list.add(1);
-        		} else if(count.contains(student2AnswerCount)) {
-        			list.add(2);
-        		} else if(count.contains(student3AnswerCount)) {
-        			list.add(3);
-        		}
-        	}
-        	
-        	Iterator<Integer> iter = list.iterator();
-        	int i = 0;
-        	while(iter.hasNext()) {
-        		answer[i] =  iter.next();
-        		i++;
+        	if(count.contains(student1AnswerCount) && count.contains(student2AnswerCount)) {
+        		answer[0] = 1;
+        		answer[1] = 2;
+        	} else if(count.contains(student2AnswerCount) && count.contains(student3AnswerCount)) {
+        		answer[0] = 2;
+        		answer[1] = 3;
+        	} else {
+        		answer[0] = 1;
+        		answer[1] = 3;
         	}
         }
         
         return answer;
-
         
     }
 }
