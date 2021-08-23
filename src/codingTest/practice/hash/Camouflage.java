@@ -63,6 +63,7 @@ public class Camouflage {
         return answer;
     }
     
+    //다른사람풀이..
 //    public int otherSolution(String[][] clothes) {
 //        return Arrays.stream(clothes)
 //                .collect(groupingBy(p -> p[1], mapping(p -> p[0], counting())))
