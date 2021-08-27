@@ -25,15 +25,17 @@ public class FunctionDevelopment {
 //    	for (int i : progresses) {
 //			System.out.println(i);
 //		}
+    	//음..
     	Queue progress = new LinkedList<>(Arrays.asList(progresses));
+    	Queue speed = new LinkedList<>(Arrays.asList(speeds));
     	
+    	System.out.println(speed.poll());
     	Queue test = new LinkedList<>();
     	
     	for (int object : progresses) {
     		test.add(object);
     		
 		}
-    	System.out.println(test);
     	for(int i = 0 ; i < progresses.length; i++) {
     		test.poll();
     	}
