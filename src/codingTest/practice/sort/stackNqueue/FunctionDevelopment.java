@@ -31,11 +31,17 @@ public class FunctionDevelopment {
     	
     	System.out.println(speed.poll());
     	Queue test = new LinkedList<>();
+    	Queue test1 = new LinkedList<>();
     	
+    	// 배열 -> queue? 
     	for (int object : progresses) {
     		test.add(object);
     		
 		}
+    	for (int object : speeds) {
+    		test1.add(object);
+    		
+    	}
     	for(int i = 0 ; i < progresses.length; i++) {
     		test.poll();
     	}
