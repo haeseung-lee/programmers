@@ -42,6 +42,8 @@ public class FunctionDevelopment {
     		test1.add(object);
     		
     	}
+    	
+    	System.out.println(test1.poll());
     	for(int i = 0 ; i < progresses.length; i++) {
     		test.poll();
     	}
