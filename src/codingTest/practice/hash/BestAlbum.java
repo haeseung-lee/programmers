@@ -1,5 +1,8 @@
 package codingTest.practice.hash;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class BestAlbum {
 
 	public static void main(String[] args) {
@@ -25,7 +28,14 @@ public class BestAlbum {
         
         // 고유번호를 키로? 
         // Map 안에 Map? 
+       
+        Map<Integer, Map> list = new HashMap<>();
         
+        
+        
+        for(int i = 0; i < genres.length; i++) {
+        	
+        }
         return answer;
     }
 }
