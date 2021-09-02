@@ -12,6 +12,10 @@ public class BestAlbum {
 		int[] plays = {500, 600, 150, 800, 2500};
 		//결과 -> 4,1,3,0
 		
+		BestAlbum test = new BestAlbum();
+		
+		test.solution(genres, plays);
+		
 	}
 	
     public int[] solution(String[] genres, int[] plays) {
@@ -45,6 +49,8 @@ public class BestAlbum {
         		genreList.put(genres[i], playCount);
         	}
         }
+        
+        System.out.println(genreList);
         return answer;
     }
 }
