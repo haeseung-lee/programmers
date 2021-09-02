@@ -31,10 +31,19 @@ public class BestAlbum {
        
         Map<Integer, Map> list = new HashMap<>();
         
-        
+        Map<String, Integer> genreList = new HashMap();
         
         for(int i = 0; i < genres.length; i++) {
-        	
+        
+        	if(genreList.get(genres[i]) == null) {
+        		
+        		genreList.put(genres[i], plays[i]);
+        	} else {
+        		
+        		int playCount = genreList.get(genres[i]) + plays[i];
+        		
+        		genreList.put(genres[i], playCount);
+        	}
         }
         return answer;
     }
