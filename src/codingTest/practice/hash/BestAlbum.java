@@ -1,7 +1,12 @@
 package codingTest.practice.hash;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class BestAlbum {
 
@@ -33,7 +38,6 @@ public class BestAlbum {
         // 고유번호를 키로? 
         // Map 안에 Map? 
        
-        Map<Integer, Map> list = new HashMap<>();
         
         Map<String, Integer> genreList = new HashMap();
         
@@ -49,6 +53,25 @@ public class BestAlbum {
         		genreList.put(genres[i], playCount);
         	}
         }
+        
+        // Map 정렬
+		// Map.Entry 리스트 작성
+		List<Entry<String, Integer>> listEntries = new ArrayList<Entry<String, Integer>>(genreList.entrySet());
+
+		// 비교함수 Comparator를 사용하여 오름차순으로 정렬
+		Collections.sort(listEntries, new Comparator<Entry<String, Integer>>() {
+			// compare로 값을 비교
+			public int compare(Entry<String, Integer> obj1, Entry<String, Integer> obj2) {
+				// 내림 차순 정렬
+				return obj2.getValue().compareTo(obj1.getValue());
+			}
+		});
+		
+		System.out.println("내림 차순 정렬");
+		// 결과 출력
+		for(Entry<String, Integer> entry : listEntries) {
+			System.out.println(entry.getKey() + " : " + entry.getValue());
+		}
         
         System.out.println(genreList);
         return answer;
