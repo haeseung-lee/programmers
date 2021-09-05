@@ -74,6 +74,11 @@ public class BestAlbum {
 		}
         
         System.out.println(genreList);
+        
+        // 재생횟수가 많은 장르의 순서는 구했는데
+        // 담을 수 있는 변수를 따로 선언?
+        
+        
         return answer;
     }
 }
