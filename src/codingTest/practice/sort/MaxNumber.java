@@ -1,7 +1,7 @@
 package codingTest.practice.sort;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class MaxNumber {
 
@@ -9,66 +9,68 @@ public class MaxNumber {
 		
 		MaxNumber test = new MaxNumber();
 		
-		int[] numbers = {6,10,2};
+		int[] numbers = {10, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 		test.solution(numbers);
 	}
 	
     public String solution(int[] numbers) {
         String answer = "";
         
-        //[6,10,2]3x2x1
-        //0 + 1 + 2 : 6102
-        //0 + 2 + 1 : 6210
-        //1 + 0 + 2 : 1062
-        //1 + 2 + 0 : 1026
-        //2 + 0 + 1 : 2610
-        //2 + 1 + 0 : 2106
+        System.out.println("숫자목록");
         
-        //[0,1]2x1
-        // 0 + 1
-        // 1 + 0
+        for (int i : numbers) {
+			System.out.print(i + " ");
+		}
+        System.out.println();
         
-        //[1,2,3,4] 4x3x2x1
-        //
         int count = 1;
         
         for(int i = numbers.length; i > 1; i--) {
         	count = count*i;
         }
         
-        HashSet<HashSet<Integer>> indexList = new HashSet<>();
-        System.out.println(indexList);
+        System.out.println(count);
+        
+        ArrayList<ArrayList<Integer>> indexList = new ArrayList<>();
+        
         while(indexList.size() < count) {
         	
-        	HashSet<Integer> index = new HashSet<>();
-        	System.out.println("5555555555555" + index.size());
+        	ArrayList<Integer> index = new ArrayList<>();
+        	
         	while(index.size() < numbers.length) {
         		
         		int num =  (int)(Math.random() * numbers.length);
-        		System.out.print(num);
-        		System.out.println();
-        		index.add(num);
         		
-        		System.out.println("index 는? " + index);
-        		System.out.println("=====================" + index.size());
+        		if(!index.contains(num)) {
+        			
+        			index.add(num);
+        		}
         	}
-        	System.out.println("======바깥세상");
-        	indexList.add(index);
-        	System.out.println(indexList);
-        	System.out.println("indexList의 크기" + indexList.size());
-
+        	
+        	if(!indexList.contains(index)) {
+        		indexList.add(index);
+        		System.out.println(indexList);
+        	}
+        	
         }
         
-        String b = "";
-        
-        for(int i = 0; i< numbers.length; i++) {
-        	b = b+numbers[i];
+        ArrayList<Integer> numberList = new ArrayList<>();
+        for(int i = 0; i< indexList.size(); i++) {
+        	String number = "";
+        	
+        	for(int j = 0; j < indexList.get(i).size(); j++) {
+        		number = number+numbers[indexList.get(i).get(j)];
+        		
+        	}
+        	
+        	numberList.add(Integer.parseInt(number));
         }
         
-        System.out.println(b.length());
+        Collections.sort(numberList);
         
-//        while(numberList.size() < numbers.length) {
-//        }
+        answer = numberList.get(numberList.size()-1).toString();
+        
+        System.out.println("가장큰수는? : " + answer);
         return answer;
     }
 }
