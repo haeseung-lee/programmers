@@ -1,6 +1,9 @@
 package codingTest.practice.skillCheckTest;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Level1Question2 {
 
@@ -19,26 +22,20 @@ public class Level1Question2 {
     	
     	ArrayList list = new ArrayList();
     	
+    	//table 을 list로 변환(점수 계산하기 쉽게 역순으로 치환)
     	for(int i = 0; i < table.length; i++) {
     		
+    		String[] test = table[i].split(" ");
+    		List<String> testList = Arrays.asList(test);
+    		Collections.reverse(testList);
     		
+    		System.out.println(testList);
     	}
     	
     	
-//    	ArrayList<String[]> tableList = new ArrayList<>();
-//    	for(int i = 0; i < table.length; i++) {
-//    		
-//    		String[] tableArrays = table[i].split(" ");
-//    		tableList.add(tableArrays);
-//    	}
-//    	
-//    	for (String[] strings : tableList) {
-//			
-//    		for (String strings2 : strings) {
-//				System.out.print(strings2 + " ");
-//			}
-//    		System.out.println();
-//		}
+    	
+    	
+
         String answer = "";
         return answer;
     }
