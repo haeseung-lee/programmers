@@ -2,9 +2,11 @@ package codingTest.practice.skillCheckTest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Level1Question2 {
 
@@ -50,6 +52,10 @@ public class Level1Question2 {
     	
     	
     	//점수 정렬, 동점 있을 시 사전순으로 정렬
+
+    	//stream활용 정렬?
+    	jobScore.entrySet().stream().sorted(Map.Entry.comparingByValue());
+    	
     	System.out.println(jobScore);
 
         String answer = "";
