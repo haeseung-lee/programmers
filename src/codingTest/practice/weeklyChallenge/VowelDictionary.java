@@ -22,6 +22,7 @@ public class VowelDictionary {
     	
     	String[] vowelList = {"A","E","I","O","U"};
     	
+    	
         int answer = 0;
         return answer;
     }
