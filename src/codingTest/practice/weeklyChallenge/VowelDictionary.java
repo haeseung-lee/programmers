@@ -17,6 +17,11 @@ public class VowelDictionary {
     	 * 순서는 A, AA... 
     	 * 길이는 5이하
     	 * */
+    	
+    	// 길이가 1, 2, 3, 4, 5
+    	
+    	String[] vowelList = {"A","E","I","O","U"};
+    	
         int answer = 0;
         return answer;
     }
