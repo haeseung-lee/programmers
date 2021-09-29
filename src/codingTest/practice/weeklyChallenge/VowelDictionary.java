@@ -1,8 +1,7 @@
 package codingTest.practice.weeklyChallenge;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Collections;
 
 /**
  * 모음사전..
@@ -15,7 +14,7 @@ public class VowelDictionary {
 		
 		VowelDictionary test = new VowelDictionary();
 		
-		System.out.println(test.solution("test"));
+		System.out.println(test.solution("I"));
 	}
 	
     public int solution(String word) {
@@ -27,20 +26,59 @@ public class VowelDictionary {
     	
     	// 길이가 1, 2, 3, 4, 5
     	
-    	String[] vowelList = {"A","E","I","O","U"};
+    	String[] vowel = {"A","E","I","O","U"};
     	
-    	List<String> vowel = Arrays.asList(vowelList);
+    	ArrayList<String> vowelList = new ArrayList<>();
+
+    	//길이가 1;
+    	for (String string : vowel) {
+    		vowelList.add(string);
+		}
     	
-    	//길이가 1인 경우 : 5
-    	//길이가 2인 경우 : 15개 AA, AE, AI, AO, AU, EE, EI, EO, EU, II, IO, IU, OO, OU, UU  / 5 + 4 + 3 + 2 + 1
-    	//길이가 3인 경우 : AAA, AAE, AAI, AAO, AAU, AEA, AEE, AEI, AEO, AEU, AIA, AIE, AII, AIO, AIU, AOA, AOE, AOI,AOO, AOU, AUA, AUE, AUI, AUO, AUU, 25+24+23+22+21
     	
-    	for(int i = 0; i < vowelList.length; i++) {
-    		
+    	//길이가 2;
+    	for(int i = 0; i < vowel.length; i++) {
+    		for(int j = 0; j < vowel.length; j++) {
+    			vowelList.add(vowel[i] + vowel[j]);
+    		}
     	}
-    	System.out.println(vowel);
     	
-        int answer = 0;
+    	//길이가 3
+    	for(int i = 0; i < vowel.length; i++) {
+    		for(int j = 0; j < vowel.length; j++) {
+    			for(int k = 0; k < vowel.length; k++) {
+    				vowelList.add(vowel[i] + vowel[j] + vowel[k]);
+    			}
+    		}
+    	}
+    	
+    	//길이가 4
+    	for(int i = 0; i < vowel.length; i++) {
+    		for(int j = 0; j < vowel.length; j++) {
+    			for(int k = 0; k < vowel.length; k++) {
+    				for(int l = 0; l < vowel.length; l++) {
+    					vowelList.add(vowel[i] + vowel[j] + vowel[k] + vowel[l]);
+    				}
+    			}
+    		}
+    	}
+    	
+    	//길이가 5
+    	for(int i = 0; i < vowel.length; i++) {
+    		for(int j = 0; j < vowel.length; j++) {
+    			for(int k = 0; k < vowel.length; k++) {
+    				for(int l = 0; l < vowel.length; l++) {
+    					for(int m = 0; m < vowel.length; m++) {
+    						vowelList.add(vowel[i] + vowel[j] + vowel[k] + vowel[l] + vowel[m]);
+    					}
+    				}
+    			}
+    		}
+    	}
+    	
+    	Collections.sort(vowelList);
+    	System.out.println(vowelList);
+        int answer = vowelList.indexOf(word) + 1;
         return answer;
     }
 }
