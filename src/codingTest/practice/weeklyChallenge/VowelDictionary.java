@@ -2,6 +2,7 @@ package codingTest.practice.weeklyChallenge;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Scanner;
 
 /**
  * 모음사전..
@@ -14,7 +15,28 @@ public class VowelDictionary {
 		
 		VowelDictionary test = new VowelDictionary();
 		
-		System.out.println(test.solution("I"));
+		while(true) {
+			
+			System.out.println("길이가 1에서 5 사이인 대문자모음으로 이루어진 단어를 검색 할 수 있습니다.");
+			System.out.print("검색할 단어를 입력하세요 : ");
+			
+			Scanner sc = new Scanner(System.in);
+			
+			String word =  sc.nextLine();
+			
+			if(test.solution(word) < 1) {
+				System.out.println(word + "는 " + "등록되지 않은 단어입니다.");
+			} else {
+				System.out.println(word + "는 " + test.solution(word) + "번쨰 단어입니다");
+			}
+			
+			System.out.print("계속 검색하시겠습니까?(y/n) : ");
+			
+			if(sc.nextLine().equals("n")) {
+				System.out.println("검색을 종료합니다.");
+				break;
+			}
+		}
 	}
 	
     public int solution(String word) {
@@ -76,8 +98,10 @@ public class VowelDictionary {
     		}
     	}
     	
+    	//정렬
     	Collections.sort(vowelList);
-    	System.out.println(vowelList);
+    	
+    	//검색
         int answer = vowelList.indexOf(word) + 1;
         return answer;
     }
