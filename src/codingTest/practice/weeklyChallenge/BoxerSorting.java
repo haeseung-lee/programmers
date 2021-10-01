@@ -9,6 +9,10 @@ public class BoxerSorting {
 
 	public static void main(String[] args) {
 		
+		int[] weights = {50,82,75,12};
+		String[] head2head = {"NLWL","WNLL","LWNW","WWLN"};
+		//결과 -> {3,4,1,2}
+		
 	}
 	
     /**
@@ -23,7 +27,13 @@ public class BoxerSorting {
     	 *	2. 승률이 동일한 복서의 번호들 중에서는 자신보다 몸무게가 무거운 복서를 이긴 횟수가 많은 복서의 번호가 앞쪽으로 감
     	 *	3. 자신보다 무거운 복서를 이긴 횟수까지 동일 -> 자기 몸무게가 무거운 복서의 번호가 앞쪽으로
     	 *	4. 자기몸무게까지 동일한 복서의 번호들 중에서 작은 번호가 앞쪽으로 감.
+    	 *
+    	 *  정렬순서 전체승률 -> 상대몸무게 높은 순 -> 본인몸무게 높은순 -> 번호 작은순
     	 * */
+    	
+    	//승률/상대몸무게/본인몸무게/번호 이렇게 저장해놓고 순서대로?
+    	
+    	
         int[] answer = {};
         return answer;
     }
