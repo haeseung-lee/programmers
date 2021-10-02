@@ -1,5 +1,10 @@
 package codingTest.practice.weeklyChallenge;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * 복서정렬하기
  * @author user
@@ -13,6 +18,8 @@ public class BoxerSorting {
 		String[] head2head = {"NLWL","WNLL","LWNW","WWLN"};
 		//결과 -> {3,4,1,2}
 		
+		BoxerSorting test = new BoxerSorting();
+		test.solution(weights, head2head);
 	}
 	
     /**
@@ -31,9 +38,28 @@ public class BoxerSorting {
     	 *  정렬순서 전체승률 -> 상대몸무게 높은 순 -> 본인몸무게 높은순 -> 번호 작은순
     	 * */
     	
-    	//승률/상대몸무게/본인몸무게/번호 이렇게 저장해놓고 순서대로?
+    	//승률(0)/상대몸무게(1)/본인몸무게(2)/번호(key) 이렇게 저장해놓고 순서대로?
     	
+    	Map<Integer,List> boxerInfo = new HashMap<>();
     	
+    	for(int i = 0; i < weights.length; i++) {
+    		
+    		List record = new ArrayList();
+    		
+    		int all = head2head[i].length()-1;
+    		//1. 승률 구하기
+    		int winCount = 0;
+    		for(int j = 0; j < weights.length; j++) {
+    			
+    			
+    			if(head2head[i].charAt(j) == 'W') {
+    				
+    				winCount++;
+    			}
+    		}
+    		System.out.println((i+1) + "번째 선수 승리횟수" + winCount);			
+    		System.out.println((i+1) + "번째 선수 승률" + (double)winCount/(weights.length-1));			
+    	}
         int[] answer = {};
         return answer;
     }
