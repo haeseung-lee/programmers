@@ -1,6 +1,8 @@
 package codingTest.practice.weeklyChallenge;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -40,6 +42,7 @@ public class BoxerSorting {
     	
     	//승률(0)/상대몸무게(1)/본인몸무게(2)/번호(key) 이렇게 저장해놓고 순서대로?
     	
+    	//
     	List boxerInfo = new ArrayList<>();
     	
     	for(int i = 0; i < weights.length; i++) {
@@ -66,11 +69,14 @@ public class BoxerSorting {
     				}
     			}
     		}
-    		
-    		record.add(i+1);
+    		//0.승률
     		record.add((double)winCount/(weights.length-1));
+    		//1.자신보다몸무게 많이 나가는 사람 이긴 횟수
     		record.add(moreWeightWin);
+    		//2.본인몸무게
     		record.add(weights[i]);
+    		//3.선수번호
+    		record.add(i+1);
     		
     		System.out.println((i+1) + "번째 선수");
     		System.out.print("승리횟수 : " + winCount);			
@@ -80,7 +86,28 @@ public class BoxerSorting {
     		boxerInfo.add(record);
     		
     	}
+    	
     	System.out.println(boxerInfo);
+    	
+    	Comparator<List> compare = new Comparator<List>() {
+
+			@Override
+			public int compare(List o1, List o2) {
+
+				if(o1.get(0) != o2.get(0)) {
+					return (double)o1.get(0)<(double)o2.get(0)? 1: -1;
+				} else if(o1.get(1) != o2.get(1)) {
+					return (int)o1.get(1)<(int)o2.get(1)? 1: -1;
+				} else if(o1.get(2) != o2.get(2)) {
+					return (int)o1.get(2)<(int)o2.get(2)? -1: 1;
+				} else {
+					return (int)o1.get(3)<(int)o2.get(3)? -1: 1;
+				}
+			}
+		};
+		
+		boxerInfo.sort(compare);
+		System.out.println(boxerInfo);
         int[] answer = {};
         return answer;
     }
