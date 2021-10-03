@@ -40,26 +40,47 @@ public class BoxerSorting {
     	
     	//승률(0)/상대몸무게(1)/본인몸무게(2)/번호(key) 이렇게 저장해놓고 순서대로?
     	
-    	Map<Integer,List> boxerInfo = new HashMap<>();
+    	List boxerInfo = new ArrayList<>();
     	
     	for(int i = 0; i < weights.length; i++) {
     		
     		List record = new ArrayList();
     		
     		int all = head2head[i].length()-1;
-    		//1. 승률 구하기
+    		
     		int winCount = 0;
+    		int moreWeightWin = 0; 
+    		
+    		
     		for(int j = 0; j < weights.length; j++) {
     			
     			
+    			//1. 승률 구하기
     			if(head2head[i].charAt(j) == 'W') {
     				
     				winCount++;
+    				
+    				//2. 몸무게 높은 사람 이긴 횟수 구하기
+    				if(weights[i] < weights[j]) {
+    					moreWeightWin++;
+    				}
     			}
     		}
-    		System.out.println((i+1) + "번째 선수 승리횟수" + winCount);			
-    		System.out.println((i+1) + "번째 선수 승률" + (double)winCount/(weights.length-1));			
+    		
+    		record.add(i+1);
+    		record.add((double)winCount/(weights.length-1));
+    		record.add(moreWeightWin);
+    		record.add(weights[i]);
+    		
+    		System.out.println((i+1) + "번째 선수");
+    		System.out.print("승리횟수 : " + winCount);			
+    		System.out.print(" | 승률 : " + (double)winCount/(weights.length-1));
+    		System.out.print(" | 몸무게 높은 선수를 이긴 횟수 : " + moreWeightWin);
+    		System.out.println();
+    		boxerInfo.add(record);
+    		
     	}
+    	System.out.println(boxerInfo);
         int[] answer = {};
         return answer;
     }
