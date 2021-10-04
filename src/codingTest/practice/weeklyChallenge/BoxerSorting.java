@@ -78,36 +78,55 @@ public class BoxerSorting {
     		//3.선수번호
     		record.add(i+1);
     		
-    		System.out.println((i+1) + "번째 선수");
-    		System.out.print("승리횟수 : " + winCount);			
-    		System.out.print(" | 승률 : " + (double)winCount/(weights.length-1));
-    		System.out.print(" | 몸무게 높은 선수를 이긴 횟수 : " + moreWeightWin);
-    		System.out.println();
     		boxerInfo.add(record);
     		
     	}
     	
-    	System.out.println(boxerInfo);
     	
-    	Comparator<List> compare = new Comparator<List>() {
-
+//    	Comparator<List> compare = new Comparator<List>() {
+//
+//			@Override
+//			public int compare(List o1, List o2) {
+//
+//				if(o1.get(0) != o2.get(0)) {
+//					return (double)o1.get(0)<(double)o2.get(0)? 1: -1;
+//				} else if(o1.get(1) != o2.get(1)) {
+//					return (int)o1.get(1)<(int)o2.get(1)? 1: -1;
+//				} else if(o1.get(2) != o2.get(2)) {
+//					return (int)o1.get(2)<(int)o2.get(2)? -1: 1;
+//				} else {
+//					return (int)o1.get(3)<(int)o2.get(3)? -1: 1;
+//				}
+//			}
+//		};
+		Comparator<List> compare = new Comparator<List>() {
+			
 			@Override
 			public int compare(List o1, List o2) {
-
-				if(o1.get(0) != o2.get(0)) {
-					return (double)o1.get(0)<(double)o2.get(0)? 1: -1;
-				} else if(o1.get(1) != o2.get(1)) {
-					return (int)o1.get(1)<(int)o2.get(1)? 1: -1;
-				} else if(o1.get(2) != o2.get(2)) {
-					return (int)o1.get(2)<(int)o2.get(2)? -1: 1;
-				} else {
-					return (int)o1.get(3)<(int)o2.get(3)? -1: 1;
-				}
+				
+				return (double)o1.get(0) < (double)o2.get(0)? 1: -1;
 			}
 		};
 		
 		boxerInfo.sort(compare);
-		System.out.println(boxerInfo);
+		System.out.println("승률정렬 : " + boxerInfo);
+		
+		compare = new Comparator<List>() {
+			
+			@Override
+			public int compare(List o1, List o2) {
+				//이게 안되는군..
+				if(o1.get(0) == o2.get(0)) {
+					
+					return (int)o1.get(1) < (int)o2.get(1)? 1: -1;
+				} else {
+					
+					return 0;
+				}
+			}
+		};
+		
+		System.out.println("몸무게 높은사람 이긴 수  : " + boxerInfo);
         int[] answer = {};
         return answer;
     }
