@@ -1,11 +1,8 @@
 package codingTest.practice.weeklyChallenge;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 복서정렬하기
@@ -16,9 +13,9 @@ public class BoxerSorting {
 
 	public static void main(String[] args) {
 		
-		int[] weights = {50,82,75,12};
-		String[] head2head = {"NLWL","WNLL","LWNW","WWLN"};
-		//결과 -> {3,4,1,2}
+		int[] weights = {60,70,60};
+		String[] head2head = {"NNN", "NNN", "NNN"};
+		//예상결과 -> {2,1,3} // 실행결과 -> {1,2,3}
 		
 		BoxerSorting test = new BoxerSorting();
 		test.solution(weights, head2head);
@@ -109,14 +106,13 @@ public class BoxerSorting {
 		};
 		
 		boxerInfo.sort(compare);
-		System.out.println("승률정렬 : " + boxerInfo);
 		
 		compare = new Comparator<List>() {
 			
 			@Override
 			public int compare(List o1, List o2) {
-				//이게 안되는군..
-				if(o1.get(0) == o2.get(0)) {
+
+				if((double)o1.get(0) == (double)o2.get(0)) {
 					
 					return (int)o1.get(1) < (int)o2.get(1)? 1: -1;
 				} else {
@@ -125,9 +121,50 @@ public class BoxerSorting {
 				}
 			}
 		};
+		boxerInfo.sort(compare);
 		
-		System.out.println("몸무게 높은사람 이긴 수  : " + boxerInfo);
-        int[] answer = {};
+		//1,2 같을시
+		compare = new Comparator<List>() {
+			
+			@Override
+			public int compare(List o1, List o2) {
+				
+				if(o1.get(1) == o2.get(1) && o1.get(0) == o2.get(0)) {
+					
+					return (int)o1.get(2) > (int)o2.get(2)? 1: -1;
+				} else {
+					
+					return 0;
+				}
+			}
+		};
+		
+		boxerInfo.sort(compare);
+		System.out.println(boxerInfo);
+		compare = new Comparator<List>() {
+			
+			@Override
+			public int compare(List o1, List o2) {
+				
+				if(o1.get(1) == o2.get(1) && o1.get(0) == o2.get(0) && o1.get(2) == o1.get(2)) {
+					
+					return (int)o1.get(3) < (int)o2.get(3)? -1: 1;
+				} else {
+					
+					return 0;
+				}
+			}
+		};
+
+		
+		boxerInfo.sort(compare);
+		System.out.println(boxerInfo);
+		int[] answer = new int[boxerInfo.size()];
+		for(int i = 0; i < boxerInfo.size(); i++) {
+			answer[i] = (int) ((List)boxerInfo.get(i)).get(3);
+			
+		}
+		
         return answer;
     }
 }
