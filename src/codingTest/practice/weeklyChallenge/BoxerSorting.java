@@ -39,7 +39,6 @@ public class BoxerSorting {
     	
     	//승률(0)/상대몸무게(1)/본인몸무게(2)/번호(key) 이렇게 저장해놓고 순서대로?
     	
-    	//
     	List boxerInfo = new ArrayList<>();
     	
     	for(int i = 0; i < weights.length; i++) {
@@ -50,11 +49,14 @@ public class BoxerSorting {
     		
     		int winCount = 0;
     		int moreWeightWin = 0; 
-    		
+    		int total = 0;
     		
     		for(int j = 0; j < weights.length; j++) {
     			
-    			
+    			//0.전체 경기수 구하기
+    			if(head2head[i].charAt(j) != 'N') {
+    				total++;
+    			}
     			//1. 승률 구하기
     			if(head2head[i].charAt(j) == 'W') {
     				
@@ -67,7 +69,7 @@ public class BoxerSorting {
     			}
     		}
     		//0.승률
-    		record.add((double)winCount/(weights.length-1));
+    		record.add((double)winCount/total);
     		//1.자신보다몸무게 많이 나가는 사람 이긴 횟수
     		record.add(moreWeightWin);
     		//2.본인몸무게
@@ -78,8 +80,17 @@ public class BoxerSorting {
     		boxerInfo.add(record);
     		
     	}
+
+    	String none = "";
     	
+    	for(int i = 0; i < head2head[0].length(); i++) {
+    		
+    		none += "N";
+    		
+    	}
     	
+    	if(!none.equals(head2head[0])) {
+    		
 //    	Comparator<List> compare = new Comparator<List>() {
 //
 //			@Override
@@ -96,75 +107,107 @@ public class BoxerSorting {
 //				}
 //			}
 //		};
-		Comparator<List> compare = new Comparator<List>() {
-			
-			@Override
-			public int compare(List o1, List o2) {
-				
-				return (double)o1.get(0) < (double)o2.get(0)? 1: -1;
-			}
-		};
+    		Comparator<List> compare = new Comparator<List>() {
+    			
+    			@Override
+    			public int compare(List o1, List o2) {
+    				
+    				return (double)o1.get(0) < (double)o2.get(0)? 1: -1;
+    			}
+    		};
+    		boxerInfo.sort(compare);
+    		
+    		compare = new Comparator<List>() {
+    			
+    			@Override
+    			public int compare(List o1, List o2) {
+    				
+    				if((double)o1.get(0) == (double)o2.get(0)) {
+    					
+    					return (int)o1.get(1) < (int)o2.get(1)? 1: -1;
+    				} else {
+    					
+    					return 0;
+    				}
+    			}
+    		};
+    		boxerInfo.sort(compare);
+    		
+    		//1,2 같을시
+    		compare = new Comparator<List>() {
+    			
+    			@Override
+    			public int compare(List o1, List o2) {
+    				
+    				if(o1.get(1) == o2.get(1) && o1.get(0) == o2.get(0)) {
+    					
+    					return (int)o1.get(2) > (int)o2.get(2)? 1: -1;
+    				} else {
+    					
+    					return 0;
+    				}
+    			}
+    		};
+    		
+    		boxerInfo.sort(compare);
+    		
+    		compare = new Comparator<List>() {
+    			
+    			@Override
+    			public int compare(List o1, List o2) {
+    				
+    				if(o1.get(1) == o2.get(1) && o1.get(0) == o2.get(0) && o1.get(2) == o1.get(2)) {
+    					
+    					return (int)o1.get(3) < (int)o2.get(3)? -1: 1;
+    				} else {
+    					
+    					return 0;
+    				}
+    			}
+    		};
+    		
+    		
+    		boxerInfo.sort(compare);
+    		
+    		int[] answer = new int[boxerInfo.size()];
+    		for(int i = 0; i < boxerInfo.size(); i++) {
+    			answer[i] = (int) ((List)boxerInfo.get(i)).get(3);
+    		}
+    		return answer;
+    	} else {
+    		Comparator<List> compare = new Comparator<List>() {
+    			
+    			@Override
+    			public int compare(List o1, List o2) {
+    				
+    				return (int)o1.get(2) < (int)o2.get(2)? 1: -1;
+    			}
+    		};
+    		boxerInfo.sort(compare);
+    		
+    		compare = new Comparator<List>() {
+    			
+    			@Override
+    			public int compare(List o1, List o2) {
+    				
+    				if((int)o1.get(2) == (int)o2.get(2)) {
+    					
+    					return (int)o1.get(3) < (int)o2.get(3)? -1: 1;
+    				} else {
+    					
+    					return 0;
+    				}
+    			}
+    		};
+    		boxerInfo.sort(compare);
+    		
+    		int[] answer = new int[boxerInfo.size()];
+    		for(int i = 0; i < boxerInfo.size(); i++) {
+    			answer[i] = (int) ((List)boxerInfo.get(i)).get(3);
+    		}
+    		return answer;
+    		
+    	}
 		
-		boxerInfo.sort(compare);
-		
-		compare = new Comparator<List>() {
-			
-			@Override
-			public int compare(List o1, List o2) {
-
-				if((double)o1.get(0) == (double)o2.get(0)) {
-					
-					return (int)o1.get(1) < (int)o2.get(1)? 1: -1;
-				} else {
-					
-					return 0;
-				}
-			}
-		};
-		boxerInfo.sort(compare);
-		
-		//1,2 같을시
-		compare = new Comparator<List>() {
-			
-			@Override
-			public int compare(List o1, List o2) {
-				
-				if(o1.get(1) == o2.get(1) && o1.get(0) == o2.get(0)) {
-					
-					return (int)o1.get(2) > (int)o2.get(2)? 1: -1;
-				} else {
-					
-					return 0;
-				}
-			}
-		};
-		
-		boxerInfo.sort(compare);
-		System.out.println(boxerInfo);
-		compare = new Comparator<List>() {
-			
-			@Override
-			public int compare(List o1, List o2) {
-				
-				if(o1.get(1) == o2.get(1) && o1.get(0) == o2.get(0) && o1.get(2) == o1.get(2)) {
-					
-					return (int)o1.get(3) < (int)o2.get(3)? -1: 1;
-				} else {
-					
-					return 0;
-				}
-			}
-		};
-
-		
-		boxerInfo.sort(compare);
-		System.out.println(boxerInfo);
-		int[] answer = new int[boxerInfo.size()];
-		for(int i = 0; i < boxerInfo.size(); i++) {
-			answer[i] = (int) ((List)boxerInfo.get(i)).get(3);
-			
-		}
-		
-        return answer;
     }
 }
