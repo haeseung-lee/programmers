@@ -14,11 +14,15 @@ public class BoxerSorting {
 	public static void main(String[] args) {
 		
 		int[] weights = {60,70,60};
-		String[] head2head = {"NNN", "NNN", "NNN"};
+		String[] head2head = {"NNW", "NNN", "LNN"};
 		//예상결과 -> {2,1,3} // 실행결과 -> {1,2,3}
 		
 		BoxerSorting test = new BoxerSorting();
-		test.solution(weights, head2head);
+		int[] result = test.solution(weights, head2head);
+		
+		for (int i : result) {
+			System.out.print(i + " ");
+		}
 	}
 	
     /**
