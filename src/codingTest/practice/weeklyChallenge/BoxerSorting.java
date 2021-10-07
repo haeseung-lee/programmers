@@ -14,7 +14,7 @@ public class BoxerSorting {
 	public static void main(String[] args) {
 		
 		int[] weights = {60,70,60};
-		String[] head2head = {"NNW", "NNN", "LNN"};
+		String[] head2head = {"NWW", "LNL", "LWN"};
 		//예상결과 -> {2,1,3} // 실행결과 -> {1,2,3}
 		
 		BoxerSorting test = new BoxerSorting();
