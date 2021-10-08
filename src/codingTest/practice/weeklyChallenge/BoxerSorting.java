@@ -67,6 +67,25 @@ public class BoxerSorting {
     		
     	}
     	
+    	//몸무게 큰 사람 이긴 횟수
+    	for(int i = 0; i < weights.length; i++) {
+    		
+    		int moreWeightWinCnt = 0;
+    		for(int j = 0; j < head2head[i].length(); j++) {
+    			
+    			if(head2head[i].charAt(j) == 'W') {
+    				
+    				if(weights[i] < weights[j]) {
+    					
+    					moreWeightWinCnt++;
+    				}
+    			}
+    			
+    		}
+    		System.out.println((i+1) + "선수가 몸무게 큰 선수 이긴 수 : " + moreWeightWinCnt + "회");
+    		
+    	}
+    	//2. 
     	/*정답률 50%코드*/
 //    	List boxerInfo = new ArrayList<>();
 //    	
