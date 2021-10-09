@@ -47,34 +47,25 @@ public class BoxerSorting {
     	//처음부터 다시..
     	//각각을 배열로 만들어서 비교를??
     	//1. 승률구하기
+    	double[][] infoList = new double[weights.length][4];
     	for(int i = 0; i < weights.length; i++) {
     		
-    		int totalCnt = 0;
-    		int winCnt = 0;
+    		double totalCnt = 0;
+    		double winCnt = 0;
+    		double moreWeightWinCnt = 0;
     		for(int j = 0; j < head2head[i].length(); j++) {
     			
+    			//전체 경기수
     			if(head2head[i].charAt(j) != 'N') {
     				
     				totalCnt++;
     			}
     			
+    			//승횟수
     			if(head2head[i].charAt(j) == 'W') {
     				
     				winCnt++;
-    			}
-    		}
-    		System.out.println((i+1) + "선수의 총전적 : " + winCnt + "승/"+totalCnt);
-    		
-    	}
-    	
-    	//몸무게 큰 사람 이긴 횟수
-    	for(int i = 0; i < weights.length; i++) {
-    		
-    		int moreWeightWinCnt = 0;
-    		for(int j = 0; j < head2head[i].length(); j++) {
-    			
-    			if(head2head[i].charAt(j) == 'W') {
-    				
+    				//몸무게 큰 선수 이긴 횟수
     				if(weights[i] < weights[j]) {
     					
     					moreWeightWinCnt++;
@@ -82,9 +73,23 @@ public class BoxerSorting {
     			}
     			
     		}
-    		System.out.println((i+1) + "선수가 몸무게 큰 선수 이긴 수 : " + moreWeightWinCnt + "회");
+    		infoList[i][0] = winCnt/totalCnt;
+    		infoList[i][1] = moreWeightWinCnt;
+    		infoList[i][2] = weights[i];
+    		infoList[i][3] = i;
+    		
     		
     	}
+    	
+    	for (double[] ds : infoList) {
+    		
+    		for (double ds2 : ds) {
+    			System.out.print(ds2 + " / ");
+    		}
+    		System.out.println();
+    	}
+    	//몸무게 큰 사람 이긴 횟수
+    	
     	//2. 
     	/*정답률 50%코드*/
 //    	List boxerInfo = new ArrayList<>();
